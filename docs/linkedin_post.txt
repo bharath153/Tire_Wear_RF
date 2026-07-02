@@ -1,0 +1,35 @@
+HOOK:
+🛞 Most drivers replace tires by time or feel. What if your car knew exactly how much tread was left — without any extra hardware?
+
+POST:
+Worn tires are a leading cause of road accidents. EU regulations (ECE-R30) set a 1.6 mm minimum tread depth, but tires should ideally be replaced at 3 mm for wet performance.
+
+The problem: standard vehicles don't have direct tread sensors. But they do have a CAN bus full of data.
+
+In this project, I built a Random Forest model that predicts remaining tread depth (mm) from 10 CAN-derived features:
+→ Total mileage
+→ Average speed & acceleration patterns
+→ ABS activation frequency (aggressive braking proxy)
+→ Average cornering G (lateral load)
+→ Tire pressure (under-inflation accelerates wear)
+→ Vehicle mass & axle load distribution
+
+Results:
+✅ R² = 0.993 on 400 unseen test samples
+✅ RMSE = 0.18 mm
+✅ CV R² = 0.993 ± 0.001
+
+Key finding: Mileage + aggressive braking events account for ~70% of explained variance — but cornering intensity and pressure are the hidden amplifiers.
+
+Application: Zero-hardware predictive alert integrated directly into the vehicle's existing TPMS module.
+
+🔗 Full analysis + feature importance on GitHub (link in comments)
+
+HASHTAGS:
+#TireWear #PredictiveMaintenance #MachineLearning #RandomForest #AutomotiveSafety #CAN #FleetManagement #DataScience #OpenToWork
+
+---
+IMAGE SUGGESTION:
+Use `plots/fig1_*.png` (performance chart) as the main LinkedIn image.
+Optionally combine fig1 + fig4 into a 2-panel image using any image editor.
+Keep image width > 1200px for best display in feed.
