@@ -1,23 +1,31 @@
-# Technical Notes — Tire Wear Prediction from CAN Bus Data — Random Forest
+# Technical Notes — Tire Wear Random-Forest Regression
 
-## Data Generation Methodology
-The synthetic dataset is constructed using physics-informed equations that capture the dominant engineering relationships in Predictive Maintenance & Fleet Management. While synthetic, the data distributions and feature interactions are calibrated to match published literature values.
+## Purpose
 
-## Model Selection Rationale
-**Random Forest Regressor (300 trees)** was chosen for the following reasons:
-- Appropriate for the dataset size and feature structure
-- Validated performance on similar engineering regression/classification tasks in literature
-- Interpretable outputs compatible with engineering design workflows
+This repository demonstrates a supervised-learning workflow for estimating tire tread wear from synthetic vehicle/operating-condition features.
 
-## Hyperparameter Tuning
-Where applicable, hyperparameters were tuned via cross-validated grid or random search. Final parameters are documented in the main script.
+## Data
 
-## Known Limitations
-1. Synthetic data does not capture all real-world noise and sensor artefacts
-2. Model is validated within the training design space (interpolation); extrapolation should be treated with caution
-3. For production deployment, re-training on real experimental data is required
+The dataset is synthetic / physics-inspired and is intended to represent factors that influence wear over use.
 
-## References
-- Forrester, A.I.J., Sóbester, A., Keane, A.J. (2008). *Engineering Design via Surrogate Modelling: A Practical Guide*. Wiley.
-- Scikit-learn: Pedregosa et al. (2011). Journal of Machine Learning Research, 12, 2825-2830.
-- Domain-specific references are noted inline in the main script.
+It is not derived from fleet CAN logs or measured tread-depth campaigns.
+
+## Model
+
+The implementation uses a `RandomForestRegressor` with 300 trees.
+
+The model is suitable for this demonstration because it:
+- captures nonlinear feature interactions;
+- requires little feature scaling;
+- provides feature-importance estimates;
+- offers a strong nonlinear regression baseline.
+
+## Evaluation
+
+The workflow includes held-out prediction metrics and cross-validation together with diagnostic plots.
+
+## Limitations
+
+Real tire-wear prediction would require longitudinal measurements, tire-specific properties, inflation pressure, alignment, road surface, weather, load history and reliable tread-depth ground truth.
+
+The current metrics should therefore be interpreted as synthetic benchmark performance, not field accuracy.
